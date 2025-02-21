@@ -18,10 +18,17 @@ function App() {
     setTasks([...tasks, taskToAdd])
   }
 
-  // Delete a task
   const deleteTask = (id) => {
-    // Filter out the task that matches the id
     setTasks(tasks.filter((task) => task.id !== id))
+  }
+
+  // Toggle task's done state
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isDone: !task.isDone } : task
+      )
+    )
   }
 
   return (
@@ -33,6 +40,7 @@ function App() {
           key={task.id}
           task={task}
           onDelete={deleteTask}
+          onToggle={toggleTask}
         />
       ))}
     </div>
