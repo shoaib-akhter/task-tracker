@@ -22,7 +22,6 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id))
   }
 
-  // Toggle task's done state
   const toggleTask = (id) => {
     setTasks(
       tasks.map((task) =>
@@ -35,14 +34,17 @@ function App() {
     <div>
       <Header />
       <AddTask onAdd={addTask} />
-      {tasks.map((task) => (
-        <Task
-          key={task.id}
-          task={task}
-          onDelete={deleteTask}
-          onToggle={toggleTask}
-        />
-      ))}
+
+      <div className="tasks-container">
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            task={task}
+            onDelete={deleteTask}
+            onToggle={toggleTask}
+          />
+        ))}
+      </div>
     </div>
   )
 }
