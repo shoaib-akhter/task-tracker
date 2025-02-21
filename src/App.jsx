@@ -12,14 +12,16 @@ function App() {
     { id: 3, text: 'Buy groceries', isDone: true },
   ])
 
-  // Add a new task to the state
   const addTask = (newTask) => {
-    // Create a random id
     const id = Math.floor(Math.random() * 10000) + 1
-    // Combine id with newTask
     const taskToAdd = { id, ...newTask }
-    // Update the state
     setTasks([...tasks, taskToAdd])
+  }
+
+  // Delete a task
+  const deleteTask = (id) => {
+    // Filter out the task that matches the id
+    setTasks(tasks.filter((task) => task.id !== id))
   }
 
   return (
@@ -27,7 +29,11 @@ function App() {
       <Header />
       <AddTask onAdd={addTask} />
       {tasks.map((task) => (
-        <Task key={task.id} task={task} />
+        <Task
+          key={task.id}
+          task={task}
+          onDelete={deleteTask}
+        />
       ))}
     </div>
   )

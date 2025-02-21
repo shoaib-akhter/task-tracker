@@ -1,12 +1,20 @@
-import React from "react";
+// Task.jsx
+import React from 'react'
 
-// 'task' will be passed as a prop, for example: { id: 1, text: 'Wash dishes', isDone: false }
-function Task({ task }) {
-    return (
-        <div>
-            <p>{task.text}</p>
-        </div>
-    )
+function Task({ task, onDelete }) {
+  return (
+    <div>
+      <p>
+        {task.text}{' '}
+        <button
+          onClick={() => onDelete(task.id)}
+          style={{ marginLeft: '10px', backgroundColor: 'red', color: 'white' }}
+        >
+          X
+        </button>
+      </p>
+    </div>
+  )
 }
 
-export default Task;
+export default Task
